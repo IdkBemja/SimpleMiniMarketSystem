@@ -1,0 +1,9 @@
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\obj\Debug\net6.0-windows\SimpleMiniMarketSystem.csproj.AssemblyReference.cache
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\obj\Debug\net6.0-windows\TestLoginMySqlEncrypted.inicio.resources
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\obj\Debug\net6.0-windows\TestLoginMySqlEncrypted.login.resources
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\obj\Debug\net6.0-windows\TestLoginMySqlEncrypted.register.resources
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\obj\Debug\net6.0-windows\SimpleMiniMarketSystem.csproj.GenerateResource.cache
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\obj\Debug\net6.0-windows\SimpleMiniMarketSystem.GeneratedMSBuildEditorConfig.editorconfig
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\obj\Debug\net6.0-windows\SimpleMiniMarketSystem.AssemblyInfoInputs.cache
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\obj\Debug\net6.0-windows\SimpleMiniMarketSystem.AssemblyInfo.cs
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\obj\Debug\net6.0-windows\SimpleMiniMarketSystem.csproj.CoreCompileInputs.cache
