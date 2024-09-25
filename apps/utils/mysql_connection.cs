@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestLoginMySqlEncrypted.apps.utils
+namespace SimpleMiniMarketSystem.apps.utils
 {
     internal class mysql_connection
     {

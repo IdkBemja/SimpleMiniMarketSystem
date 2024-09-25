@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TestLoginMySqlEncrypted.apps.models;
+using SimpleMiniMarketSystem.apps.models;
 
-namespace TestLoginMySqlEncrypted
+namespace SimpleMiniMarketSystem
 {
     public partial class login : Form
     {

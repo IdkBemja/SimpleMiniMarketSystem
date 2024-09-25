@@ -1,4 +1,4 @@
-﻿namespace TestLoginMySqlEncrypted
+﻿namespace SimpleMiniMarketSystem
 {
     partial class inicio
     {

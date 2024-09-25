@@ -5,9 +5,9 @@ using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TestLoginMySqlEncrypted.apps.utils;
+using SimpleMiniMarketSystem.apps.utils;
 
-namespace TestLoginMySqlEncrypted.apps.config
+namespace SimpleMiniMarketSystem.apps.config
 {
     internal class Mysql_config
     {

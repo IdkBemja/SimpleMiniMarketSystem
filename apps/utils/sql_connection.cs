@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 
-namespace TestLoginMySqlEncrypted.apps.utils
+namespace SimpleMiniMarketSystem.apps.utils
 {
     internal class sql_connection
     {

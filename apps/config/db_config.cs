@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Drawing.Text;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using TestLoginMySqlEncrypted.apps.utils;
+using MySql.Data.MySqlClient;
+using SimpleMiniMarketSystem.apps.utils;
 
-namespace TestLoginMySqlEncrypted.apps.config
+namespace SimpleMiniMarketSystem.apps.config
 {
 
-    internal class db_config
+    public class db_config
     {
         private bool sql_usage;
         private bool mysql_usage;
@@ -38,34 +41,44 @@ namespace TestLoginMySqlEncrypted.apps.config
                 sql_config.SQL();
             }
 
+
+        }
+        public dynamic GetConnection()
+        {
+            if (sql_usage)
+            {
+                return sql_config.GetConnection();
+            }
+            else if (mysql_usage)
+            {
+                return Mysql_config.GetConnection();
+            }
+
+            throw new Exception("No se ha configurado ningún motor de base de datos.");
+        }
+        
+        public IDbCommand CreateCommand(string query, IDbConnection connection)
+        {
+            if (sql_usage)
+            {
+                return new SqlCommand(query, (SqlConnection)connection);
+            } 
+            else if (mysql_usage) 
+            {
+
+                return new MySqlCommand(query, (MySqlConnection)connection);
+            }
+            throw new Exception("No se ha configurado ningún motor de base de datos.");
         }
 
         public void OpenConnection()
         {
-            if (sql_usage)
-            {
-                var connection = sql_config.GetConnection();
-                connection.OpenConnection();
-            }
-            else if (mysql_usage)
-            {
-                var connection = Mysql_config.GetConnection();
-                connection.OpenConnection();
-            }
+            GetConnection().OpenConnection();
         }
 
         public void CloseConnection()
         {
-            if (sql_usage)
-            {
-                var connection = sql_config.GetConnection();
-                connection.CloseConnection();
-            }
-            else if (mysql_usage)
-            {
-                var connection = Mysql_config.GetConnection();
-                connection.CloseConnection();
-            }
+            GetConnection().CloseConnection();
         }
     }
 }

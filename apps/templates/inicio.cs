@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TestLoginMySqlEncrypted
+namespace SimpleMiniMarketSystem
 {
     public partial class inicio : Form
     {

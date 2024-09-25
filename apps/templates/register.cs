@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BCrypt.Net;
 using Org.BouncyCastle.Crypto.Generators;
-using TestLoginMySqlEncrypted.apps.utils;
+using SimpleMiniMarketSystem.apps.utils;
 
-namespace TestLoginMySqlEncrypted
+namespace SimpleMiniMarketSystem
 {
     public partial class register : Form
     {

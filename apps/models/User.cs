@@ -1,33 +1,50 @@
-﻿using MySql.Data.MySqlClient;
+﻿using System;
 using BCrypt.Net;
-using TestLoginMySqlEncrypted.apps.config;
-using TestLoginMySqlEncrypted.apps.utils;
+using SimpleMiniMarketSystem.apps.config;
+using SimpleMiniMarketSystem.apps.utils;
+using SimpleMiniMarketSystem.apps.manager;
+using MySql.Data.MySqlClient;
 
-namespace TestLoginMySqlEncrypted.apps.models
+namespace SimpleMiniMarketSystem.apps.models
 {
     internal class User
     {
-        public string Register_account(string username, string rut, string password)
-        {
 
+        private db_config database;
+
+        public User()
+        {
+            database = DataBaseManager.database;
+        }
+
+        public string Register_account(string username, string password)
+        {
             string password_encrypted = BCrypt.Net.BCrypt.HashPassword(password);
 
             try
             {
-                var connection = Mysql_config.GetConnection();
-                connection.OpenConnection();
-                using (var conn = connection.GetConnection())
+                database.OpenConnection();
+
+                using (var conn = database.GetConnection())
                 {
-                    string query = "INSERT INTO usuarios (username, rut, password) VALUES (@username, @rut, @password)";
-                    using (var cmd = new MySqlCommand(query, conn))
+                    string query = "INSERT INTO usuarios (username, password) VALUES (@username, @password)";
+                    using (var cmd = database.CreateCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue("@rut", rut);
-                        cmd.Parameters.AddWithValue("@password", password_encrypted);
+                        var parameterUsername = cmd.CreateParameter();
+                        parameterUsername.ParameterName = "@username";
+                        parameterUsername.Value = username;
+                        cmd.Parameters.Add(parameterUsername);
+
+                        var parameterPassword = cmd.CreateParameter();
+                        parameterPassword.ParameterName = "@password";
+                        parameterPassword.Value = password_encrypted;
+                        cmd.Parameters.Add(parameterPassword);
+
                         cmd.ExecuteNonQuery();
                     }
                 }
-                connection.CloseConnection();
+
+                database.CloseConnection();
                 return "Registro exitoso.";
             }
             catch (Exception ex)
@@ -38,23 +55,28 @@ namespace TestLoginMySqlEncrypted.apps.models
 
         public string Login_Account(string username, string password)
         {
-            mysql_connection connection = null;
             try
             {
-                connection = Mysql_config.GetConnection();
-                connection.OpenConnection();
-                using (var conn = connection.GetConnection())
+                database.OpenConnection();
+
+                using (var conn = database.GetConnection())
                 {
                     string query = "SELECT password FROM usuarios WHERE username = @username";
-                    using (var cmd = new MySqlCommand(query, conn))
+                    using (var cmd = database.CreateCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@username", username);
+                        var parameterUsername = cmd.CreateParameter();
+                        parameterUsername.ParameterName = "@username";
+                        parameterUsername.Value = username;
+                        cmd.Parameters.Add(parameterUsername);
+
+
                         using (var reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())
                             {
-                                string storedHash = reader.GetString("password");
+                                string storedHash = reader.GetString(reader.GetOrdinal("password"));
                                 bool isPasswordValid = BCrypt.Net.BCrypt.Verify(password, storedHash);
+
                                 if (isPasswordValid)
                                 {
                                     return "Login exitoso.";
@@ -78,7 +100,7 @@ namespace TestLoginMySqlEncrypted.apps.models
             }
             finally
             {
-                connection?.CloseConnection();
+                database.CloseConnection();
             }
         }
     }
