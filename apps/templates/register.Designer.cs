@@ -32,10 +32,8 @@
             btn_register = new Button();
             register_confirm_passwd = new TextBox();
             register_passwd = new TextBox();
-            register_rut = new TextBox();
             register_username = new TextBox();
             label_username = new Label();
-            label_rut = new Label();
             label_passwd = new Label();
             label_confirm_passwd = new Label();
             SuspendLayout();
@@ -63,24 +61,17 @@
             // 
             // register_confirm_passwd
             // 
-            register_confirm_passwd.Location = new Point(434, 265);
+            register_confirm_passwd.Location = new Point(311, 265);
             register_confirm_passwd.Name = "register_confirm_passwd";
             register_confirm_passwd.Size = new Size(174, 23);
             register_confirm_passwd.TabIndex = 2;
             // 
             // register_passwd
             // 
-            register_passwd.Location = new Point(187, 265);
+            register_passwd.Location = new Point(311, 199);
             register_passwd.Name = "register_passwd";
             register_passwd.Size = new Size(174, 23);
             register_passwd.TabIndex = 3;
-            // 
-            // register_rut
-            // 
-            register_rut.Location = new Point(311, 199);
-            register_rut.Name = "register_rut";
-            register_rut.Size = new Size(174, 23);
-            register_rut.TabIndex = 4;
             // 
             // register_username
             // 
@@ -98,19 +89,10 @@
             label_username.TabIndex = 6;
             label_username.Text = "Usuario:";
             // 
-            // label_rut
-            // 
-            label_rut.AutoSize = true;
-            label_rut.Location = new Point(311, 181);
-            label_rut.Name = "label_rut";
-            label_rut.Size = new Size(31, 15);
-            label_rut.TabIndex = 7;
-            label_rut.Text = "RUT:";
-            // 
             // label_passwd
             // 
             label_passwd.AutoSize = true;
-            label_passwd.Location = new Point(187, 247);
+            label_passwd.Location = new Point(311, 181);
             label_passwd.Name = "label_passwd";
             label_passwd.Size = new Size(70, 15);
             label_passwd.TabIndex = 8;
@@ -119,7 +101,7 @@
             // label_confirm_passwd
             // 
             label_confirm_passwd.AutoSize = true;
-            label_confirm_passwd.Location = new Point(434, 247);
+            label_confirm_passwd.Location = new Point(311, 247);
             label_confirm_passwd.Name = "label_confirm_passwd";
             label_confirm_passwd.Size = new Size(127, 15);
             label_confirm_passwd.TabIndex = 9;
@@ -132,10 +114,8 @@
             ClientSize = new Size(800, 450);
             Controls.Add(label_confirm_passwd);
             Controls.Add(label_passwd);
-            Controls.Add(label_rut);
             Controls.Add(label_username);
             Controls.Add(register_username);
-            Controls.Add(register_rut);
             Controls.Add(register_passwd);
             Controls.Add(register_confirm_passwd);
             Controls.Add(btn_register);
@@ -152,10 +132,8 @@
         private Button btn_register;
         private TextBox register_confirm_passwd;
         private TextBox register_passwd;
-        private TextBox register_rut;
         private TextBox register_username;
         private Label label_username;
-        private Label label_rut;
         private Label label_passwd;
         private Label label_confirm_passwd;
     }

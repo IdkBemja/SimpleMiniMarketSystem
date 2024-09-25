@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SimpleMiniMarketSystem": {
+      "commandName": "Project",
+      "sqlDebugging": true
+    }
+  }
+}

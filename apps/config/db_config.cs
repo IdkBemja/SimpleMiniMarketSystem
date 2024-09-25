@@ -30,15 +30,15 @@ namespace SimpleMiniMarketSystem.apps.config
             sql_usage = useSql;
             mysql_usage = useMysql;
 
-            if (mysql_usage)
-            {
-                MysqlConfig = new Mysql_config();
-                Mysql_config.Mysql();
-
-            } else if (sql_usage)
+            if (sql_usage)
             {
                 sql_Config = new sql_config();
                 sql_config.SQL();
+
+            } else if (mysql_usage)
+            {
+                MysqlConfig = new Mysql_config();
+                Mysql_config.Mysql();
             }
 
 

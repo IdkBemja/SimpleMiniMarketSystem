@@ -13,7 +13,7 @@ namespace SimpleMiniMarketSystem.apps.manager
 
         static DataBaseManager()
         {
-            bool useSql = true; // si quieres cambiar de sql a mysql solo cambia esto a false
+            bool useSql = false; // si quieres cambiar de sql a mysql solo cambia esto a false
             bool useMysql = !useSql;
 
             database = new db_config(useSql, useMysql);

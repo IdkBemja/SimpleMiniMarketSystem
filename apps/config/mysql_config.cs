@@ -19,7 +19,7 @@ namespace SimpleMiniMarketSystem.apps.config
             string db_port = "3306";
             string db_username = "root";
             string db_password = "root";
-            string db_name = "test_csharp";
+            string db_name = "test_minimarket";
 
             connection = new mysql_connection(db_address, db_port, db_username, db_password, db_name);
         }

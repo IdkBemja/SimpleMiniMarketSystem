@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace SimpleMiniMarketSystem.apps.models
 {
-    internal class User
+    public class User
     {
 
         private db_config database;

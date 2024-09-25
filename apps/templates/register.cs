@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Common;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using BCrypt.Net;
-using Org.BouncyCastle.Crypto.Generators;
-using SimpleMiniMarketSystem.apps.utils;
+﻿using SimpleMiniMarketSystem.apps.models;
 
 namespace SimpleMiniMarketSystem
 {
@@ -34,16 +21,29 @@ namespace SimpleMiniMarketSystem
         {
             string password = register_passwd.Text;
             string confirm_password = register_confirm_passwd.Text;
-            string encrypted_passwd = BCrypt.Net.BCrypt.HashPassword(password);
 
             try
             {
-                if (password == confirm_password)
+                if (password != confirm_password)
                 {
-                    MessageBox.Show($"la contraseña es: {password} y encriptada es {encrypted_passwd}");
+                    MessageBox.Show($"Las contraseñas no coinciden. {password} y {confirm_password}");
                 }
+                else
+                {
+                    User user = new User();
+                    string username = register_username.Text;
+                    string resultado = user.Register_account(username, password);
+                    if (resultado == "Registro exitoso.")
+                    {
+                        Form inicio = new inicio();
+                        inicio.Show();
+                        Hide();
+                    }
 
-            } catch (Exception ex)
+                    MessageBox.Show("ola");
+                }
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex);
 
