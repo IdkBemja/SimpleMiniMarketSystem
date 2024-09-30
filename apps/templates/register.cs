@@ -1,18 +1,23 @@
-﻿using SimpleMiniMarketSystem.apps.models;
+﻿using SimpleMiniMarketSystem.apps.config;
+using SimpleMiniMarketSystem.apps.manager;
+using SimpleMiniMarketSystem.apps.models;
+using System.Data;
 
 namespace SimpleMiniMarketSystem
 {
     public partial class register : Form
     {
 
-        public register()
+        private readonly IDbConnectionManager _dbManager;
+        public register(IDbConnectionManager dbManager)
         {
             InitializeComponent();
+            _dbManager = dbManager;
         }
 
         private void back_to_login_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Form back_login = new login();
+            Form back_login = new login(_dbManager);
             back_login.Show();
             Hide();
         }
@@ -22,6 +27,7 @@ namespace SimpleMiniMarketSystem
             string password = register_passwd.Text;
             string confirm_password = register_confirm_passwd.Text;
 
+
             try
             {
                 if (password != confirm_password)
@@ -30,9 +36,9 @@ namespace SimpleMiniMarketSystem
                 }
                 else
                 {
-                    User user = new User();
+                    User user = new User(_dbManager);
                     string username = register_username.Text;
-                    string resultado = user.Register_account(username, password);
+                    string resultado = user.RegisterAccount(username, password);
                     if (resultado == "Registro exitoso.")
                     {
                         Form inicio = new inicio();

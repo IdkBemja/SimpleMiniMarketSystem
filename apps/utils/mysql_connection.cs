@@ -1,60 +1,54 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
+using Microsoft.Extensions.Configuration;
+using SimpleMiniMarketSystem.apps.manager;
 
 namespace SimpleMiniMarketSystem.apps.utils
 {
-    internal class mysql_connection
+    public class MySqlConnectionManager : IDbConnectionManager
     {
-        private string mysql_address;
-        private string mysql_port;
-        private string mysql_username;
-        private string mysql_passwd;
-        private string mysql_db;
+        private MySqlConnection _connection;
 
-        private string connectionString;
-        private MySqlConnection connection;
-
-        public mysql_connection(string address, string port, string username, string passwd, string db)
+        public MySqlConnectionManager(IConfigurationSection config)
         {
-            mysql_address = address;
-            mysql_port = port;
-            mysql_username = username;
-            mysql_passwd = passwd;
-            mysql_db = db;
-
-            connectionString = $"Server={mysql_address};Port={mysql_port};Database={mysql_db};Uid={mysql_username};Pwd={mysql_passwd};";
-            connection = new MySqlConnection(connectionString);
+            string connectionString = $"Server={config["Address"]};Port={config["Port"]};Database={config["Database"]};Uid={config["Username"]};Pwd={config["Password"]};";
+            _connection = new MySqlConnection(connectionString);
         }
 
-        public MySqlConnection GetConnection()
+        public IDbConnection GetConnection()
         {
-            return connection;
+            if (_connection.State == ConnectionState.Closed)
+            {
+                OpenConnection();
+            }
+            return _connection;
         }
 
         public void OpenConnection()
         {
-            try
+            if (_connection.State == ConnectionState.Closed)
             {
-                connection.Open();
-                Console.WriteLine("Conexión exitosa a la base de datos.");
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
+                _connection.Open();
+                Console.WriteLine("Conexión MySQL Abierta.");
             }
         }
 
         public void CloseConnection()
         {
-            if (connection != null && connection.State == System.Data.ConnectionState.Open)
+            if (_connection.State == ConnectionState.Open)
             {
-                connection.Close();
-                Console.WriteLine("Conexión cerrada.");
+                _connection.Close();
+                Console.WriteLine("Conexión MySQL Cerrada.");
             }
+        }
+
+        public IDbCommand CreateCommand(string query, IDbConnection connection)
+        {
+            if (connection.State != ConnectionState.Open)
+            {
+                throw new InvalidOperationException("La conexión debe estar abierta para crear un comando.");
+            }
+            return new MySqlCommand(query, (MySqlConnection)connection);
         }
     }
 }

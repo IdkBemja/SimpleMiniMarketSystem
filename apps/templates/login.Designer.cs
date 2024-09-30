@@ -34,6 +34,7 @@
             login_username = new TextBox();
             label_passwd = new Label();
             label_username = new Label();
+            testconnectionbtn = new Button();
             SuspendLayout();
             // 
             // register_login_btn
@@ -90,11 +91,22 @@
             label_username.TabIndex = 5;
             label_username.Text = "Usuario:";
             // 
+            // testconnectionbtn
+            // 
+            testconnectionbtn.Location = new Point(663, 415);
+            testconnectionbtn.Name = "testconnectionbtn";
+            testconnectionbtn.Size = new Size(125, 23);
+            testconnectionbtn.TabIndex = 6;
+            testconnectionbtn.Text = "Probar Conexión";
+            testconnectionbtn.UseVisualStyleBackColor = true;
+            testconnectionbtn.Click += testconnectionbtn_Click;
+            // 
             // login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(testconnectionbtn);
             Controls.Add(label_username);
             Controls.Add(label_passwd);
             Controls.Add(login_username);
@@ -115,5 +127,6 @@
         private TextBox login_username;
         private Label label_passwd;
         private Label label_username;
+        private Button testconnectionbtn;
     }
 }

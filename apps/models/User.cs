@@ -1,34 +1,33 @@
 ﻿using System;
+using System.Data;
 using BCrypt.Net;
-using SimpleMiniMarketSystem.apps.config;
-using SimpleMiniMarketSystem.apps.utils;
 using SimpleMiniMarketSystem.apps.manager;
-using MySql.Data.MySqlClient;
+using SimpleMiniMarketSystem.apps.utils;
 
 namespace SimpleMiniMarketSystem.apps.models
 {
     public class User
     {
+        private readonly IDbConnectionManager _dbManager;
 
-        private db_config database;
-
-        public User()
+        // Constructor que toma un IDbConnectionManager según el motor configurado
+        public User(IDbConnectionManager dbManager)
         {
-            database = DataBaseManager.database;
+            _dbManager = dbManager;
         }
 
-        public string Register_account(string username, string password)
+        public string RegisterAccount(string username, string password)
         {
-            string password_encrypted = BCrypt.Net.BCrypt.HashPassword(password);
+            string passwordEncrypted = BCrypt.Net.BCrypt.HashPassword(password);
 
             try
             {
-                database.OpenConnection();
+                _dbManager.OpenConnection();
 
-                using (var conn = database.GetConnection())
+                using (var conn = _dbManager.GetConnection())
                 {
                     string query = "INSERT INTO usuarios (username, password) VALUES (@username, @password)";
-                    using (var cmd = database.CreateCommand(query, conn))
+                    using (var cmd = _dbManager.CreateCommand(query, conn))
                     {
                         var parameterUsername = cmd.CreateParameter();
                         parameterUsername.ParameterName = "@username";
@@ -37,38 +36,40 @@ namespace SimpleMiniMarketSystem.apps.models
 
                         var parameterPassword = cmd.CreateParameter();
                         parameterPassword.ParameterName = "@password";
-                        parameterPassword.Value = password_encrypted;
+                        parameterPassword.Value = passwordEncrypted;
                         cmd.Parameters.Add(parameterPassword);
 
                         cmd.ExecuteNonQuery();
                     }
                 }
 
-                database.CloseConnection();
                 return "Registro exitoso.";
             }
             catch (Exception ex)
             {
                 return $"Error al registrar: {ex.Message}";
             }
+            finally
+            {
+                _dbManager.CloseConnection();
+            }
         }
 
-        public string Login_Account(string username, string password)
+        public string LoginAccount(string username, string password)
         {
             try
             {
-                database.OpenConnection();
+                _dbManager.OpenConnection();
 
-                using (var conn = database.GetConnection())
+                using (var conn = _dbManager.GetConnection())
                 {
                     string query = "SELECT password FROM usuarios WHERE username = @username";
-                    using (var cmd = database.CreateCommand(query, conn))
+                    using (var cmd = _dbManager.CreateCommand(query, conn))
                     {
                         var parameterUsername = cmd.CreateParameter();
                         parameterUsername.ParameterName = "@username";
                         parameterUsername.Value = username;
                         cmd.Parameters.Add(parameterUsername);
-
 
                         using (var reader = cmd.ExecuteReader())
                         {
@@ -100,7 +101,7 @@ namespace SimpleMiniMarketSystem.apps.models
             }
             finally
             {
-                database.CloseConnection();
+                _dbManager.CloseConnection();
             }
         }
     }

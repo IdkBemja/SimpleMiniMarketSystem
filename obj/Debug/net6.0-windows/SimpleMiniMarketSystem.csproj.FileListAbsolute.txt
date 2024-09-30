@@ -49,3 +49,14 @@ D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\obj\De
 D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\obj\Debug\net6.0-windows\SimpleMiniMarketSystem.pdb
 D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\obj\Debug\net6.0-windows\SimpleMiniMarketSystem.genruntimeconfig.cache
 D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\obj\Debug\net6.0-windows\ref\SimpleMiniMarketSystem.dll
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.dll
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.Binder.dll
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.EnvironmentVariables.dll
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.Json.dll
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\bin\Debug\net6.0-windows\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\bin\Debug\net6.0-windows\Microsoft.Extensions.FileProviders.Physical.dll
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\bin\Debug\net6.0-windows\Microsoft.Extensions.FileSystemGlobbing.dll
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\bin\Debug\net6.0-windows\Microsoft.Extensions.Primitives.dll
+D:\OneDrive\Programacion y analisis de sistemas\C#\SimpleMiniMarketSystem\bin\Debug\net6.0-windows\apps\appsettings.json
